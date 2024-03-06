@@ -46,26 +46,60 @@
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
-    
+    const onlyNames = inventors.map(inventor => inventor.first + ' ' + inventor.last)
+    console.log(onlyNames)
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const sortedByBD = inventors.sort((a, b) => {
+      if (a.year > b.year) {
+        return 1;
+      }
+      return -1;
+    });
+    console.log(sortedByBD);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const age = inventors.reduce((total, inventor) => total + (inventor.passed - inventor.year), 0);
+    console.log(age);
 
     // 5. Sort the inventors by years lived
+    const sortedByAge = inventors.sort((a, b) => {
+      if ((a.passed - a.year) > (b.passed - b.year)) {
+        return -1;
+      }
+      return 1;
+    });
+    console.log(sortedByAge);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+    // const category = document.querySelector('.mw-category');
+    // const links = Array.from(category.querySelectorAll('a'));
+    // const texts = links.map(link => link.textContent);
+    // const filtered = texts.filter(text => text.includes('de'));
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const alpha = people.sort((a, b) => {
+      const [alast, afirst] = a.split(' ,');
+      const [blast, bfirst] = b.split(', ');
+      return alast > blast ? 1 : -1;
+    })
+    console.log(alpha);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const count = data.reduce((sum, curr) =>{
+      for (let i = 0; i < data.length; i++) {
+        if (curr === data[i]) {
+          sum += 1;
+        };
+      };
+    }, 0);
+    console.log(count);
 
   </script>
 </body>
